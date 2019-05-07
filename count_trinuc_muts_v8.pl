@@ -6,16 +6,19 @@ use Bio::DB::Fasta;
 my $type = shift;
 my $fasta = shift;
 my $variants = shift;
-my $stdout = 0;
+#	JAKE - never used
+#my $stdout = 0;
 
-my $time = time;
+#	JAKE - only used in formerly used output filename variable.
+#my $time = time;
 
 unless (defined $type && defined $fasta && defined $variants) {
 	my $usage="Error: Not enough inputs\n\n\tUsage: perl count_trinuc_muts <maf, vcf, or pvcf> <reference> <variants>\\nn";
 	die $usage;
 }
 
-my $name = "$variants";
+#	JAKE - only used in formerly used output filename variable.
+#my $name = "$variants";
 
 #
 #	JAKE - why put all this in memory and then print it at the end? Its never read.
@@ -24,8 +27,8 @@ my $name = "$variants";
 #	JAKE - Not buffering. Printing directly to STDOUT.
 print "#chr\tpos\t5'tetranuc\t3'tetranuc\ttrinuc\tmut\ttrinuc_mut\tstrand\tflank41bp\tCcount\tTCcount\tTCAcount\tTCTcount\tYTCAcount\tRTCAcount\tsample\n";
 
-
-my %trinucHash;
+#	JAKE - never used
+#my %trinucHash;
 
 my %compDict = (
 	A => "T",
@@ -53,7 +56,8 @@ my %compDict = (
 #	TCG =>	0.01,
 #	TCT =>	0.08
 #);
-#
+
+#	JAKE - never used.
 #my @norm = (
 #	0.07,
 #	0.06,
