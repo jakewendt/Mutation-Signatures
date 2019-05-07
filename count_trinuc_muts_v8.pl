@@ -16,7 +16,13 @@ unless (defined $type && defined $fasta && defined $variants) {
 }
 
 my $name = "$variants";
-my $trinucs = "#chr\tpos\t5'tetranuc\t3'tetranuc\ttrinuc\tmut\ttrinuc_mut\tstrand\tflank41bp\tCcount\tTCcount\tTCAcount\tTCTcount\tYTCAcount\tRTCAcount\tsample\n";
+
+#
+#	JAKE - why put all this in memory and then print it at the end? Its never read.
+#my $trinucs = "#chr\tpos\t5'tetranuc\t3'tetranuc\ttrinuc\tmut\ttrinuc_mut\tstrand\tflank41bp\tCcount\tTCcount\tTCAcount\tTCTcount\tYTCAcount\tRTCAcount\tsample\n";
+#
+#	JAKE - Not buffering. Printing directly to STDOUT.
+print "#chr\tpos\t5'tetranuc\t3'tetranuc\ttrinuc\tmut\ttrinuc_mut\tstrand\tflank41bp\tCcount\tTCcount\tTCAcount\tTCTcount\tYTCAcount\tRTCAcount\tsample\n";
 
 
 my %trinucHash;
@@ -144,7 +150,13 @@ while (my $line = <VAR>) {
 		my $tetraseq5 = $bases[0] . $bases[1] . $bases[2] . $bases[3];
 		my $tetraseq3 = $bases[1] . $bases[2] . $bases[3] . $bases[4];
 		my $fullstring = "$bases[1]\[$ref>$alt\]$bases[3]";
-		$trinucs .= "$chr\t$pos\t$tetraseq5\t$tetraseq3\t$seq\t$ref>$alt\t$fullstring\t$strand\t$flank40\t$CGcxt\t$TCNcxt\t$A3cxt1\t$A3cxt2\t$YtetraCxt\t$RtetraCxt\t$sample\n";
+
+
+#	JAKE
+#		$trinucs .= "$chr\t$pos\t$tetraseq5\t$tetraseq3\t$seq\t$ref>$alt\t$fullstring\t$strand\t$flank40\t$CGcxt\t$TCNcxt\t$A3cxt1\t$A3cxt2\t$YtetraCxt\t$RtetraCxt\t$sample\n";
+#	JAKE - Not buffering. Printing directly to STDOUT.
+		print "$chr\t$pos\t$tetraseq5\t$tetraseq3\t$seq\t$ref>$alt\t$fullstring\t$strand\t$flank40\t$CGcxt\t$TCNcxt\t$A3cxt1\t$A3cxt2\t$YtetraCxt\t$RtetraCxt\t$sample\n";
+#	JAKE
 
 	} elsif ($strand =~ /^\-$/ ) {
 		my $TCcxt=0;
@@ -197,18 +209,29 @@ while (my $line = <VAR>) {
 		my $tetraseq3 = $compDict{$bases[3]} . $compDict{$bases[2]} . $compDict{$bases[1]} . $compDict{$bases[0]};
 		my $tetraseq5 = $compDict{$bases[4]} . $compDict{$bases[3]} . $compDict{$bases[2]} . $compDict{$bases[1]};
 		my $fullstring = "$compDict{$bases[3]}\[$ref>$alt\]$compDict{$bases[1]}";
-		$trinucs .= "$chr\t$pos\t$tetraseq5\t$tetraseq3\t$seq\t$ref>$alt\t$fullstring\t$strand\t$rcflank\t$CGcxt\t$TCNcxt\t$A3cxt1\t$A3cxt2\t$YtetraCxt\t$RtetraCxt\t$sample\n";
+
+
+#	JAKE
+#		$trinucs .= "$chr\t$pos\t$tetraseq5\t$tetraseq3\t$seq\t$ref>$alt\t$fullstring\t$strand\t$rcflank\t$CGcxt\t$TCNcxt\t$A3cxt1\t$A3cxt2\t$YtetraCxt\t$RtetraCxt\t$sample\n";
+#	JAKE - Not buffering. Printing directly to STDOUT.
+		print "$chr\t$pos\t$tetraseq5\t$tetraseq3\t$seq\t$ref>$alt\t$fullstring\t$strand\t$rcflank\t$CGcxt\t$TCNcxt\t$A3cxt1\t$A3cxt2\t$YtetraCxt\t$RtetraCxt\t$sample\n";
+#	JAKE
 
 	} else { next }
 }
 
-if ($stdout == 0) {
-	open (OUT, "> $name.$time.count.txt");
-	print OUT $trinucs;
-	close(OUT);
-} else {
-	print $trinucs;
-}
+#	JAKE - Not buffering. Printing directly to STDOUT.
+#if ($stdout == 0) {
+#	open (OUT, "> $name.$time.count.txt");
+#	print OUT $trinucs;
+#	close(OUT);
+#} else {
+#	print $trinucs;
+#}
+#	JAKE - Not buffering. Printing directly to STDOUT.
+
+
+
 # count all TCW:WGA and sum flank C:Gs
 
 # count all C:Gs and sum flank TCW:WGA
