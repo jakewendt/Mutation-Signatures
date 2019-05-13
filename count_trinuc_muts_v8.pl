@@ -81,9 +81,9 @@ my %compDict = (
 
 #system("awk 'BEGIN {FS="\t"}; {print "chr"$5"\t"$6"\t"$18"\t"$12"\t"$16}' $filein");
 
-print "creating fasta db... ";
+print STDERR "creating fasta db... ";
 my $db = Bio::DB::Fasta->new($fasta);
-print "complete!\n";
+print STDERR "complete!\n";
 
 my %repeatHash;
 
