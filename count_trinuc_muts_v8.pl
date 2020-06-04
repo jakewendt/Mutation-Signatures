@@ -110,6 +110,10 @@ while (my $line = <VAR>) {
 		$strand = $fields[16];
 		$sample = substr($fields[15],0,12);
 	}
+
+	#	JAKE depending on situation, you may need to add a chr prefix.
+	#$chr = "chr".$chr;
+
 	next unless length($alt) == 1;
 	#print "$chr $pos $ref $alt	$strand\n";
 	if ($strand =~ /^\+$/) {
@@ -147,6 +151,7 @@ while (my $line = <VAR>) {
 
 		while ($flank40 =~ /[CG]/g) { $CGcxt++ }
 		if (exists $repeatHash{$flank}) {
+			print STDERR "Exists ".$flank." in repeat hash. Skipping.\n";
 			next;
 		} else {
 			$repeatHash{$flank} = 1;
@@ -206,6 +211,7 @@ while (my $line = <VAR>) {
 		}
 		my $rcflank = join('', @revcomp);
 		if (exists $repeatHash{$rcflank}) {
+			print STDERR "Exists (rc)".$rcflank." in repeat hash. Skipping.\n";
 			next;
 		} else {
 			$repeatHash{$rcflank} = 1;
