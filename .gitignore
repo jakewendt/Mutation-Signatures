@@ -1,6 +1,5 @@
 .ipynb_checkpoints/
-CosmicCLP_MutantExport.v81.tsv
-CosmicCLP_MutantExport.v91.tsv
+CosmicCLP_MutantExport.*
 Supplementary Table 1-mutation counts.csv
 archive/
 cosmic_mut.txt
