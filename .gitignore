@@ -5,7 +5,7 @@ archive/
 cosmic_mut.txt
 cosmic_mut_all_sort.txt
 cosmic_tissue_type.txt
-sigProfiler_SBS_signatures_2019_05_22.csv
+sigProfiler_SBS_signatures_2019_05_22.*
 hg38_num.fa
 hg38_num.fa.fai
 hg38_num.fa.index
